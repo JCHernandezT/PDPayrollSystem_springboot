@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+
+		<h2 th:text="#{poly.web.district.list.title}">LIST OF DISTRICTS</h2>
+
+		<ul id="messages" th:remove="${hidemsg == true}? all"
+			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+				th:class="${#strings.toLowerCase(msg.type)}"></li>
+			<span th:if="${notifyMessages}" th:remove="all"
+				th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+		</ul>
+
+		<th:block th:switch="${not #lists.isEmpty(districtsList)}">
+			<div th:case="true" class="table-responsive">
+				<table id="myFeatureTable" class="table table-hover">
+					<thead>
+						<tr>
+							<th th:text="#{poly.web.district.list.table.name}">DISTRICT
+								NAME</th>
+							<th th:text="#{poly.web.district.list.table.appraisal}">RISK
+								APPRAISAL</th>
+							<th th:text="#{poly.web.table.label.edit}">EDIT</th>
+							<th th:text="#{poly.web.table.label.delete}">DELETE</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${districtsList}">
+							<td th:if="${item.name != null}" th:text="${item.name}">DISTRICT
+								NAME</td>
+							<td th:if="${item.appraisal != null}" th:text="${item.appraisal}">RISK
+								APPRAISAL</td>
+							<td><a href="" data-toggle="modal" data-backdrop="static"
+								data-keyboard="false" data-target="#myModal"><span
+									class="glyphicon glyphicon-pencil edit-ajax"><input
+										type="hidden" class="elm-id" th:value="${item.id}" /></span></a></td>
+							<td><a href="" data-toggle="modal" data-backdrop="static"
+								data-keyboard="false" data-target="#myDelModal"> <span
+									class="glyphicon glyphicon-trash delete-ajax"><input
+										type="hidden" class="elm2-id" th:value="${item.id}" /></span>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:case="false">
+				<p th:text="#{poly.web.district.list.empty}">NO DISTRICS ADDED
+					YET</p>
+			</div>
+		</th:block>
+
+		<!-- Edit Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title" th:text="#{poly.web.district.edit.title}">EDIT
+							DISTRICT</h4>
+					</div>
+					<div class="modal-body">
+						<div id="myModal-content">
+							<!--/*/ <th:block th:if="${validationFailed}" th:include="fragments/modal-forms :: edit_district_form"></th:block> /*/-->
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							th:text="#{poly.web.button.cancel}">CANCEL</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Delete Modal -->
+		<div id="myDelModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"
+							th:text="#{poly.web.district.delete.title}">DELETE DISTRICT</h4>
+					</div>
+					<div class="modal-body">
+						<div id="myDelModal-content"></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							th:text="#{poly.web.button.cancel}">CANCEL</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

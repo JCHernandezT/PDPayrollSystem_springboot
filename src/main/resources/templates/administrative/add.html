@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+
+		<h1 th:text="${actionTitle}">ACTION TITLE</h1>
+
+		<ul id="messages"
+			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+				th:class="${#strings.toLowerCase(msg.type)}"></li>
+			<span th:if="${notifyMessages}" th:remove="all"
+				th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+		</ul>
+
+		<form class="well form-horizontal" th:object="${administrative}" th:remove="${hideForm == true}? all"
+			th:action="@{/administrative/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.administrative.add.dni}">DNI</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input th:field="*{dni}"
+								th:placeholder="#{poly.web.administrative.add.dni}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.administrative.add.name}">NAME</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input th:field="*{name}"
+								th:placeholder="#{poly.web.administrative.add.name}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.administrative.add.lastname}">LAST NAME</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input
+								th:field="*{lastName}"
+								th:placeholder="#{poly.web.administrative.add.lastname}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.administrative.add.rank}">RANK</label>
+					<div class="col-md-7 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-star"></i></span> <select
+								th:field="*{rank}"
+								name="rank" class="form-control selectpicker">
+								<option value="" selected="selected">--SELECT--</option>
+								<th:block th:each="item : ${ranksList}">
+									<option th:value="${item.id}" th:text="${item.name}"></option>
+								</th:block>
+							</select>
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}">Error</span>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.administrative.add.position}">POSITION</label>
+					<div class="col-md-7 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list-alt"></i></span> <select
+								th:field="*{position}"
+								name="rank" class="form-control selectpicker">
+								<option value="" selected="selected">--SELECT--</option>
+								<th:block th:each="item : ${positionsList}">
+									<option th:value="${item.id}" th:text="${item.name}"></option>
+								</th:block>
+							</select>
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Error</span>
+					</div>
+				</div>
+				
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk"></span> <span
+								th:text="#{poly.web.button.save}">SAVE</span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		
+		<th:block th:if="${hideForm == true}">
+			<p th:text="#{poly.web.officer.add.fail}"></p>
+		</th:block>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+		<h1 th:text="#{poly.web.menu.welcome}">WELCOME</h1>
+		<p th:text="#{poly.web.menu.suggestion}">SUGGESTION</p>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

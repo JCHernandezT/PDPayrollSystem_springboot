@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	th:lang="${#locale.language}">
+
+<nav th:fragment="navbar">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" th:href="@{/menu}"><span
+				class="glyphicon glyphicon-th-large"></span> <span
+				th:text="#{poly.web.navbar.title} + ${#authentication.name}">APP
+					- USERNAME</span></a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"
+				th:text="#{poly.web.navbar.rankposition}">RANKS / POSITIONS<span
+					class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-header" th:text="#{poly.web.navbar.ranks}">RANKS</li>
+					<li><a href="#" th:href="@{/rank/new}"
+						th:text="#{poly.web.navbar.ranks.add}">ADD RANK</a></li>
+					<li><a href="#" th:href="@{/rank/list}"
+						th:text="#{poly.web.navbar.ranks.list}">CHECK RANKS LIST</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdown-header" th:text="#{poly.web.navbar.positions}">POSITIONS</li>
+					<li><a href="#" th:href="@{/position/new}"
+						th:text="#{poly.web.navbar.positions.add}">ADD POSITION</a></li>
+					<li><a href="#" th:href="@{/position/list}"
+						th:text="#{poly.web.navbar.positions.list}">CKECK POSITIONS
+							LIST</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdown-header" th:text="#{poly.web.navbar.districts}">DISTRICTS</li>
+					<li><a href="#" th:href="@{/district/new}"
+						th:text="#{poly.web.navbar.districts.add}">ADD DISTRICT</a></li>
+					<li><a href="#" th:href="@{/district/list}"
+						th:text="#{poly.web.navbar.districts.list}">CKECK DISTRICTS
+							LIST</a></li>
+				</ul></li>
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"
+				th:text="#{poly.web.navbar.officers}">OFFICERS<span
+					class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-header" th:text="#{poly.web.navbar.addofficer}">ADD
+						OFFICER</li>
+					<li><a href="#" th:href="@{/administrative/new}"
+						th:text="#{poly.web.navbar.administrative}">ADMINISTRATIVE</a></li>
+					<li><a href="#" th:href="@{/operative/new}"
+						th:text="#{poly.web.navbar.operative}">OPERATIVE</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdown-header"
+						th:text="#{poly.web.navbar.officers.list}">CHECK OFFICERS
+						LIST</li>
+					<li><a href="#" th:href="@{/administrative/list}"
+						th:text="#{poly.web.navbar.administrative}">ADMINISTRATIVE</a></li>
+					<li><a href="#" th:href="@{/operative/list}"
+						th:text="#{poly.web.navbar.operative}">OPERATIVE</a></li>
+				</ul></li>
+
+			<li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+				class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#" th:text="#{poly.web.navbar.payroll}">PAYROLL<span
+					class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#" th:href="@{/basic/new}"
+						th:text="#{poly.web.navbar.payroll.basic}">BASIC SALARY</a></li>
+					<li><a href="#" th:href="@{/payroll/calculate}"
+						th:text="#{poly.web.navbar.payroll.calculation}">PAYROLL
+							CALCULATION</a></li>
+				</ul></li>
+
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a
+				onclick="document.getElementById('logout-form').submit();"><span
+					class="glyphicon glyphicon-log-out"></span><span
+					th:text="#{poly.web.navbar.logout}">LOGOUT</span></a></li>
+		</ul>
+		<form id="logout-form" th:action="@{/logout}" method="post"
+			style="display: none"></form>
+	</div>
+</nav>
+
+</html>

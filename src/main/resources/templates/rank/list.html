@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+
+		<h2 th:text="#{poly.web.rank.list.title}">LIST OF RANKS</h2>
+
+		<ul id="messages"
+			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+				th:class="${#strings.toLowerCase(msg.type)}"></li>
+			<span th:if="${notifyMessages}" th:remove="all"
+				th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+		</ul>
+
+		<th:block th:switch="${not #lists.isEmpty(ranksList)}">
+			<div th:case="true" class="table-responsive">
+				<table id="myFeatureTable" class="table table-hover">
+					<thead>
+						<tr>
+							<th th:text="#{poly.web.rank.list.table.name}">RANK NAME</th>
+							<th th:text="#{poly.web.rank.list.table.appraisal}">RANK
+								APPRAISAL</th>
+							<th th:text="#{poly.web.table.label.edit}">EDIT</th>
+							<th th:text="#{poly.web.table.label.delete}">DELETE</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${ranksList}">
+							<td th:if="${item.name != null}" th:text="${item.name}">RANK
+								NAME</td>
+							<td th:if="${item.appraisal != null}" th:text="${item.appraisal}">RANK
+								APPRAISAL</td>
+							<td><a href="#" th:href="${'/rank/edit/' + item.id}"><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a href="#" th:href="${'/rank/delete/' + item.id}">
+									<span class="glyphicon glyphicon-trash to-delete"> <input
+										type="hidden" th:value="${item.name}"></input>
+								</span>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:case="false">
+				<p th:text="#{poly.web.rank.list.empty}">NO DISTRICS ADDED YET</p>
+			</div>
+		</th:block>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

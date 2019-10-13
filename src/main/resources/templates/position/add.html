@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+		
+		<h1 th:text="${actionTitle}">ACTION TITLE</h1>
+		
+		<ul id="messages"
+			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+				th:class="${#strings.toLowerCase(msg.type)}"></li>
+			<span th:if="${notifyMessages}" th:remove="all"
+				th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+		</ul>
+
+		<form class="well form-horizontal" th:object="${position}"
+			th:action="@{/position/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.position.add.name}">POSITION NAME</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-list-alt"></i></span> <input th:field="*{name}"
+								th:placeholder="#{poly.web.position.add.name}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.position.add.appraisal}">POSITION
+						APPRAISAL</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-signal"></i></span> <input
+								th:field="*{appraisal}"
+								th:placeholder="#{poly.web.position.add.appraisal}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('appraisal')}"
+							th:errors="*{appraisal}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk"></span> <span
+								th:text="#{poly.web.button.save}">SAVE</span>
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

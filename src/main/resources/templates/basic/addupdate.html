@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+
+		<h1 th:text="${actionTitle}">ACTION TITLE</h1>
+
+		<ul id="messages"
+			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+				th:class="${#strings.toLowerCase(msg.type)}"></li>
+			<span th:if="${notifyMessages}" th:remove="all"
+				th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+		</ul>
+
+		<form class="well form-horizontal" th:object="${basic}"
+			th:action="@{/basic/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-3 control-label"
+						th:text="#{poly.web.basic.add.amount}">AMOUNT</label>
+					<div class="col-md-7 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-usd"></i></span> <input th:field="*{amount}"
+								th:placeholder="*{amount}"
+								class="form-control" type="text" />
+						</div>
+						<span class="form-control-des validation-error"
+							th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">ERROR</span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-3 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk"></span> <span
+								th:text="#{poly.web.button.save}">SAVE</span>
+						</button>
+						<a class="btn btn-default" th:href="@{/menu}"><span
+							class="glyphicon glyphicon-remove-circle"></span> <span
+							th:text="#{poly.web.button.cancel}">CANCEL</span></a>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

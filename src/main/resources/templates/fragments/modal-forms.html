@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+
+<div th:fragment="edit_district_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+
+	<form class="well form-horizontal" th:object="${district}"
+		th:action="@{/district/save}" method="post">
+		<input type="hidden" th:field="*{id}" />
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.district.add.name}">DISTRICT NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input th:field="*{name}"
+							th:placeholder="#{poly.web.district.add.name}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.district.add.appraisal}">RISK APPRAISAL</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-warning-sign"></i></span> <input
+							th:field="*{appraisal}"
+							th:placeholder="#{poly.web.district.add.appraisal}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('appraisal')}" th:errors="*{appraisal}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"></label>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-floppy-disk"></span> <span
+							th:text="#{poly.web.button.save}">SAVE</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<div th:fragment="delete_district_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+	<h2>
+		<strong th:text="${district.name}"></strong>
+	</h2>
+
+	<form th:action="@{/district/delete}" method="post">
+		<button type="submit" name="removeDistrict" th:value="${district.id}"
+			class="btn btn-danger" th:text="#{poly.web.table.label.delete}">DELETE</button>
+	</form>
+</div>
+
+<div th:fragment="edit_position_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+
+	<form class="well form-horizontal" th:object="${position}"
+		th:action="@{/position/save}" method="post">
+		<input type="hidden" th:field="*{id}" />
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.position.add.name}">POSITION NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-list-alt"></i></span> <input
+							th:field="*{name}" th:placeholder="#{poly.web.position.add.name}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.position.add.appraisal}">POSITION
+					APPRAISAL</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-signal"></i></span> <input
+							th:field="*{appraisal}"
+							th:placeholder="#{poly.web.position.add.appraisal}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('appraisal')}" th:errors="*{appraisal}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"></label>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-floppy-disk"></span> <span
+							th:text="#{poly.web.button.save}">SAVE</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<div th:fragment="delete_position_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+	<h2>
+		<strong th:text="${position.name}"></strong>
+	</h2>
+
+	<form th:action="@{/position/delete}" method="post">
+		<button type="submit" name="removePosition" th:value="${position.id}"
+			class="btn btn-danger" th:text="#{poly.web.table.label.delete}">DELETE</button>
+	</form>
+</div>
+
+<div th:fragment="edit_operative_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+
+	<form class="well form-horizontal" th:object="${operative}"
+		th:remove="${hideForm == true}? all" th:action="@{/operative/save}"
+		method="post">
+		<input type="hidden" th:field="*{id}" />
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.operative.add.dni}">DNI</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input th:field="*{dni}"
+							th:placeholder="#{poly.web.operative.add.dni}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.operative.add.name}">NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input th:field="*{name}"
+							th:placeholder="#{poly.web.operative.add.name}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.operative.add.lastname}">LAST NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input
+							th:field="*{lastName}"
+							th:placeholder="#{poly.web.operative.add.lastname}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.operative.add.rank}">RANK</label>
+				<div class="col-md-7 selectContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-list-alt"></i></span> <select
+							th:field="*{rank}" name="rank" class="form-control selectpicker">
+							<option value="" selected="selected">--SELECT--</option>
+							<th:block th:each="item : ${ranksList}">
+								<option th:value="${item.id}" th:text="${item.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}">Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.operative.add.district}">DISTRICT</label>
+				<div class="col-md-7 selectContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-list-alt"></i></span> <select
+							th:field="*{district}" name="rank"
+							class="form-control selectpicker">
+							<option value="" selected="selected">--SELECT--</option>
+							<th:block th:each="item : ${districtsList}">
+								<option th:value="${item.id}" th:text="${item.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('district')}" th:errors="*{district}">Error</span>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"></label>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-floppy-disk"></span> <span
+							th:text="#{poly.web.button.save}">SAVE</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<div th:fragment="delete_operative_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+	<h2>
+		<p>
+			<strong th:text="${operative.dni}"></strong>
+		</p>
+	</h2>
+
+	<form th:action="@{/operative/delete}" method="post">
+		<button type="submit" name="removeOperative"
+			th:value="${operative.id}" class="btn btn-danger"
+			th:text="#{poly.web.table.label.delete}">DELETE</button>
+	</form>
+</div>
+
+<div th:fragment="edit_administrative_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+
+	<form class="well form-horizontal" th:object="${administrative}"
+		th:remove="${hideForm == true}? all"
+		th:action="@{/administrative/save}" method="post">
+		<input type="hidden" th:field="*{id}" />
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.administrative.add.dni}">DNI</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input th:field="*{dni}"
+							th:placeholder="#{poly.web.administrative.add.dni}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.administrative.add.name}">NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input th:field="*{name}"
+							th:placeholder="#{poly.web.administrative.add.name}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('name')}" th:errors="*{name}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.administrative.add.lastname}">LAST NAME</label>
+				<div class="col-md-7 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-globe"></i></span> <input
+							th:field="*{lastName}"
+							th:placeholder="#{poly.web.administrative.add.lastname}"
+							class="form-control" type="text" />
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">ERROR</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.administrative.add.rank}">RANK</label>
+				<div class="col-md-7 selectContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-list-alt"></i></span> <select
+							th:field="*{rank}" name="rank" class="form-control selectpicker">
+							<option value="" selected="selected">--SELECT--</option>
+							<th:block th:each="item : ${ranksList}">
+								<option th:value="${item.id}" th:text="${item.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}">Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"
+					th:text="#{poly.web.administrative.add.position}">POSITION</label>
+				<div class="col-md-7 selectContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-list-alt"></i></span> <select
+							th:field="*{position}" name="rank"
+							class="form-control selectpicker">
+							<option value="" selected="selected">--SELECT--</option>
+							<th:block th:each="item : ${positionsList}">
+								<option th:value="${item.id}" th:text="${item.name}"></option>
+							</th:block>
+						</select>
+					</div>
+					<span class="form-control-des validation-error"
+						th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Error</span>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-3 control-label"></label>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-floppy-disk"></span> <span
+							th:text="#{poly.web.button.save}">SAVE</span>
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<div th:fragment="delete_administrative_form">
+	<ul id="messages"
+		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
+			th:class="${#strings.toLowerCase(msg.type)}"></li>
+		<span th:if="${notifyMessages}" th:remove="all"
+			th:text="${session.remove( T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+	</ul>
+	<h2>
+		<p>
+			<strong th:text="${administrative.dni}"></strong>
+		</p>
+	</h2>
+
+	<form th:action="@{/administrative/delete}" method="post">
+		<button type="submit" name="removeAdministrative"
+			th:value="${administrative.id}" class="btn btn-danger"
+			th:text="#{poly.web.table.label.delete}">DELETE</button>
+	</form>
+</div>
+
+</html>
