@@ -19,26 +19,23 @@ public class OperativeService {
 	private BasicService basicService;
 	
 	public OperativeOfficerEntity saveOne(OperativeOfficerEntity operativeEntity) {
-		OperativeOfficerEntity entity = operativeRepo.save(operativeEntity);
-		return entity;
+		return operativeRepo.save(operativeEntity);
 	}
 	
 	public OperativeOfficerEntity findOne(Long id) {
-		OperativeOfficerEntity entity = operativeRepo.findOne(id);
-		return entity;
+		return operativeRepo.findById(id).orElse(null);
 	}
 	
 	public List<OperativeOfficerEntity> findAll() {
-		List<OperativeOfficerEntity> list = (List<OperativeOfficerEntity>) operativeRepo.findAll();
-		return list;
+		return (List<OperativeOfficerEntity>) operativeRepo.findAll();
 	}
 	
 	public void deleteOne(long id) {
-		operativeRepo.delete(id);
+		operativeRepo.deleteById(id);
 	}
 	
 	public boolean exist(Long id) {
-		return operativeRepo.exists(id);
+		return operativeRepo.existsById(id);
 	}
 	
 	public BigDecimal salaryCalculation(OperativeOfficerEntity operativeEntity) {

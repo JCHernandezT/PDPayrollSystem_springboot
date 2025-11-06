@@ -4,7 +4,8 @@
 
 <div th:fragment="edit_district_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -61,7 +62,8 @@
 
 <div th:fragment="delete_district_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -79,7 +81,8 @@
 
 <div th:fragment="edit_position_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -137,7 +140,8 @@
 
 <div th:fragment="delete_position_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -155,7 +159,8 @@
 
 <div th:fragment="edit_operative_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -268,7 +273,8 @@
 
 <div th:fragment="delete_operative_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -289,7 +295,8 @@
 
 <div th:fragment="edit_administrative_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"
@@ -402,7 +409,8 @@
 
 <div th:fragment="delete_administrative_form">
 	<ul id="messages"
-		th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+		th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 		<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 			th:class="${#strings.toLowerCase(msg.type)}"></li>
 		<span th:if="${notifyMessages}" th:remove="all"

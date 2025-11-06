@@ -13,7 +13,8 @@
 		<h2 th:text="#{poly.web.position.list.title}">LIST OF POSITION</h2>
 
 		<ul id="messages" th:remove="${hidemsg == true}? all"
-			th:with="notifyMessages=${session[T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}">
+			th:with="NOTIFY_KEY=${T(co.com.juan.poly.service.messages.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY},
+             notifyMessages=${session[NOTIFY_KEY]}">
 			<li th:each="msg : ${notifyMessages}" th:text="${msg.text}"
 				th:class="${#strings.toLowerCase(msg.type)}"></li>
 			<span th:if="${notifyMessages}" th:remove="all"

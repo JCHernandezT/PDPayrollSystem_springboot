@@ -23,10 +23,20 @@ public class MainController {
 	 * 			
 	 * @return the login view.
 	 */
-	@GetMapping({ "/", "/login" })
+	@GetMapping({"/login" })
 	public String getLoginView(Model model) {
 		model.addAttribute("user", new UserEntity());
 		return "login";
+	}
+
+	/**
+	 * Gets the home view.
+	 * * @return redirects to the main menu.
+	 */
+	@GetMapping("/")
+	public String getHomeView() {
+		// Cuando un usuario se loguea y accede a /, lo enviamos al menú real.
+		return "redirect:/menu";
 	}
 	
 	/**

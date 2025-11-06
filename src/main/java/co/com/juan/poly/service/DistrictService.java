@@ -25,7 +25,7 @@ public class DistrictService {
 	}
 	
 	public DistrictEntity findOne(Long id) {
-		return districtRepo.findOne(id);
+		return districtRepo.findById(id).orElse(null);
 	}
 
 	public DistrictEntity saveOne(DistrictEntity districtEntity) throws DataIntegrityViolationException {
@@ -33,11 +33,11 @@ public class DistrictService {
 	}
 	
 	public void deleteOne(long id) {
-		districtRepo.delete(id);;
+		districtRepo.deleteById(id);;
 	}
 	
 	public boolean exist(Long id) {
-		return districtRepo.exists(id);
+		return districtRepo.existsById(id);
 	}
 
 }

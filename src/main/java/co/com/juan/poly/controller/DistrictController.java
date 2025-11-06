@@ -1,7 +1,7 @@
 package co.com.juan.poly.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -200,10 +200,8 @@ public class DistrictController {
 	/**
 	 * Deletes a district.
 	 * 
-	 * @param id
+	 * @param model (the id extracted from the model)
 	 *            the identifier of the district.
-	 * @param model
-	 *            the model.
 	 * @return the districts list view.
 	 */
 	@PostMapping(value = "/delete")
