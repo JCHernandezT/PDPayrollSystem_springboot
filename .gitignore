@@ -1,9 +1,53 @@
+# =======================================================
+# CONFIGURACIÓN GENERAL / ROOT
+# =======================================================
+### Maven / Java
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
 mvnw
 mvnw.cmd
 
+# =======================================================
+# BACKEND MODULE (Spring Boot / Java)
+# =======================================================
+### Java / Maven Artifacts (Puede que necesiten el prefijo si usas múltiples targets)
+# Si el target está en la raíz, dejarlo arriba. Si está en /backend/target, usar la siguiente línea:
+/backend/target/
+
+# =======================================================
+# FRONTEND MODULE (React / Node)
+# =======================================================
+### React app ###
+
+# dependencies
+/frontend/node_modules
+
+# testing
+/frontend/coverage
+
+# production
+/frontend/build
+/frontend/dist
+
+# misc
+/frontend/package-lock.json
+/frontend/.DS_Store
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+# /frontend/.pnp
+# /frontend/.pnp.js
+
+
+# =======================================================
+# IDE/EDITOR / LOCAL ARTIFACTS
+# =======================================================
 ### STS ###
 .apt_generated
 .classpath
@@ -13,6 +57,7 @@ mvnw.cmd
 .springBeans
 
 ### IntelliJ IDEA ###
+# Estos se mantienen sin prefijo si están en la raíz o aplican a todo el workspace
 .idea
 *.iws
 *.iml
@@ -25,3 +70,13 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# local history files
+.history
