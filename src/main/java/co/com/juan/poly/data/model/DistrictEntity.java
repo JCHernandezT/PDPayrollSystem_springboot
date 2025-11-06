@@ -3,8 +3,8 @@ package co.com.juan.poly.data.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("DIS")

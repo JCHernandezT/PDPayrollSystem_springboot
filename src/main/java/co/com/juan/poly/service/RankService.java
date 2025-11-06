@@ -20,7 +20,7 @@ public class RankService {
 	}
 	
 	public RankEntity findOne(Long id) {
-		return rankRepo.findOne(id);
+		return rankRepo.findById(id).orElse(null);
 	}
 
 	public RankEntity saveOne(RankEntity rankEntity) throws DataIntegrityViolationException {
@@ -28,10 +28,10 @@ public class RankService {
 	}
 	
 	public void deleteOne(long id) {
-		rankRepo.delete(id);
+		rankRepo.deleteById(id);
 	}
 	
 	public boolean exist(Long id) {
-		return rankRepo.exists(id);
+		return rankRepo.existsById(id);
 	}
 }

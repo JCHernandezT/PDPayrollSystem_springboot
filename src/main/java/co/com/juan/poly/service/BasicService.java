@@ -22,7 +22,7 @@ public class BasicService {
 		if (basicSalaryRepo.findFirst() != null) {
 			id = basicSalaryRepo.findFirst().getId();
 		}
-		return basicSalaryRepo.exists(id);
+		return basicSalaryRepo.existsById(id);
 	}
 	
 	public BasicSalary saveOne(BasicSalary basicSalary) throws DataIntegrityViolationException {

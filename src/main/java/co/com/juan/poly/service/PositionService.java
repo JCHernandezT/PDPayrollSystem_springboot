@@ -20,7 +20,7 @@ public class PositionService {
 	}
 	
 	public PositionEntity findOne(Long id) {
-		return positionRepo.findOne(id);
+		return positionRepo.findById(id).orElse(null);
 	}
 
 	public PositionEntity saveOne(PositionEntity positionEntity) throws DataIntegrityViolationException {
@@ -28,11 +28,11 @@ public class PositionService {
 	}
 	
 	public void deleteOne(long id) {
-		positionRepo.delete(id);;
+		positionRepo.deleteById(id);;
 	}
 	
 	public boolean exist(Long id) {
-		return positionRepo.exists(id);
+		return positionRepo.existsById(id);
 	}
 }
 
