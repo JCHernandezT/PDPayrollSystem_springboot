@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head>
+<!--/*/ <th:block th:include="fragments/view-main :: head"></th:block> /*/-->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<!--/*/ <th:block th:include="fragments/view-navbar :: navbar"></th:block> /*/-->
+	</nav>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="thumbnail">
+					<img alt="" src="https://placehold.it/300x30/5C6BC0?text=&nbsp;"
+						style="width: 100%"></img>
+					<div class="caption text-center">
+						<h4>
+							<strong th:text="#{poly.web.payroll.administrative}">ADMINISTRATIVE
+								PAYROLL</strong>
+						</h4>
+						<p class="pay-currency" th:inline="text">$
+							[[${#numbers.formatDecimal(administrativePayroll, 0, 'COMMA', 2,
+							'POINT')}]]</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="thumbnail">
+					<img alt="" src="https://placehold.it/300x30/26A69A?text=&nbsp;"
+						style="width: 100%"></img>
+					<div class="caption text-center">
+						<h4>
+							<strong th:text="#{poly.web.payroll.operative}">OPERATIVE
+								PAYROLL</strong>
+						</h4>
+						<p class="pay-currency" th:inline="text">$
+							[[${#numbers.formatDecimal(operativePayroll, 0, 'COMMA', 2,
+							'POINT')}]]</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="thumbnail">
+					<img alt="" src="https://placehold.it/300x30/FF9800?text=&nbsp;"
+						style="width: 100%"></img>
+					<div class="caption text-center">
+						<h4>
+							<strong th:text="#{poly.web.payroll.total}">TOTAL
+								PAYROLL</strong>
+						</h4>
+						<p class="pay-currency" th:inline="text">$
+							[[${#numbers.formatDecimal(totalPayroll, 0, 'COMMA', 2,
+							'POINT')}]]</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<!--Div that hold the bar chart-->
+				<div id="chart_div" align="center"></div>
+			</div>
+			<div class="col-sm-6">
+				<!--Div that hold the pie chart-->
+				<div id="chart_div2" align="center"></div>
+			</div>
+		</div>
+
+
+		<footer class="footer navbar-fixed-bottom">
+			<!--/*/ <th:block th:include="fragments/view-main :: footer"></th:block> /*/-->
+		</footer>
+	</div>
+</body>
+</html>

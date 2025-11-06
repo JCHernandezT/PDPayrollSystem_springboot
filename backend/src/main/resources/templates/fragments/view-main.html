@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+	th:lang="${#locale.language}">
+<head th:fragment="head">
+<title th:text="#{poly.web.site.title}">APP NAME</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- DataTables + Bootstrap -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.15/datatables.min.css" />
+<!-- Project's CSS files -->
+<link href="src/main/resources/static/css/main.css"
+	th:href="@{/css/main.css}" rel="stylesheet" media="screen"></link>
+</head>
+
+<footer th:fragment="footer">
+	<div class="container">
+		<p
+			th:text="'©' + ${#dates.year(#dates.createNow())} + ' ' + #{poly.web.site.company}">DEV.
+			COMPANY</p>
+
+		<!-- JQuery -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<!-- DataTables + Bootstrap -->
+		<script type="text/javascript"
+			src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.15/datatables.min.js"></script>
+
+		<!-- Datatables configuration -->
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			var searchLabel = /*[[#{poly.web.table.datatables.search}]]*/'ERROR';
+			var showLabel = /*[[#{poly.web.table.datatables.show}]]*/'ERROR';
+			var entriesLabel = /*[[#{poly.web.table.datatables.entries}]]*/'ERROR';
+			var previousLabel = /*[[#{poly.web.table.datatables.previous}]]*/'ERROR';
+			var nextLabel = /*[[#{poly.web.table.datatables.next}]]*/'ERROR';
+			var showingPageLabel = /*[[#{poly.web.table.datatables.showingpage}]]*/'ERROR';
+			var ofLabel = /*[[#{poly.web.table.datatables.of}]]*/'ERROR';
+			var noRecordsLabel = /*[[#{poly.web.table.datatables.norecords}]]*/'ERROR';
+			var zeroRecordsLabel = /*[[#{poly.web.table.datatables.zerorecords}]]*/'ERROR';
+			var filteredFromLabel = /*[[#{poly.web.table.datatables.filteredFrom}]]*/'ERROR';
+			var totalEntriesLabel = /*[[#{poly.web.table.datatables.totalEntries}]]*/'ERROR';
+			/*]]>*/
+		</script>
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/datatables.js"
+			th:src="@{/js/datatables.js}"></script>
+
+		<!-- Notifications -->
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/notifications.js"
+			th:src="@{/js/notifications.js}"></script>
+
+		<!-- Edit modal dialog -->
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			var validationFailed = /*[[${validationFailed}]]*/'ERROR';
+			var formType = /*[[${formType}]]*/'ERROR';
+			/*]]>*/
+		</script>
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/edit-modal.js"
+			th:src="@{/js/edit-modal.js}"></script>
+
+		<!-- Delete modal dialog -->
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/delete-modal.js"
+			th:src="@{/js/delete-modal.js}"></script>
+
+		<!-- Simple deletion dialog -->
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			var DelMessage = /*[[#{poly.web.confirm.delete}]]*/'ERROR';
+			/*]]>*/
+		</script>
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/delete-confirm.js"
+			th:src="@{/js/delete-confirm.js}"></script>
+
+		<!-- GoogleCharts -->
+		<script type="text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" th:inline="javascript">
+			/*<![CDATA[*/
+			var admPayroll = /*[[${administrativePayroll}]]*/'ERROR';
+			var optPayroll = /*[[${operativePayroll}]]*/'ERROR';
+			var totPayroll = /*[[${totalPayroll}]]*/'ERROR';
+			var ChComboChartTitle = /*[[#{poly.web.chart.combo.title}]]*/'ERROR';
+			var ChPieChartTitle = /*[[#{poly.web.chart.pie.title}]]*/'ERROR';
+			var ChArea = /*[[#{poly.web.chart.area}]]*/'ERROR';
+			var ChAdmin = /*[[#{poly.web.chart.area.administrative}]]*/'ERROR';
+			var ChOps = /*[[#{poly.web.chart.area.operative}]]*/'ERROR';
+			var ChTotal = /*[[#{poly.web.chart.total}]]*/'ERROR';
+			var ChPayment = /*[[#{poly.web.chart.combo.payment}]]*/'ERROR';
+			var ChCurMonth = /*[[#{poly.web.chart.combo.month}]]*/'ERROR';
+			var ChPayroll = /*[[#{poly.web.chart.payroll}]]*/'ERROR';
+			/*]]>*/
+		</script>
+		<script type="text/javascript"
+			src="/src/main/resources/static/js/chart.js" th:src="@{/js/chart.js}"></script>
+
+	</div>
+</footer>
+</html>
